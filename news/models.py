@@ -1,4 +1,5 @@
 import datetime as dt
+from imp import SEARCH_ERROR
 from django.db import models
 
 # Create your models here.
@@ -34,7 +35,8 @@ class Article(models.Model):
     post = models.TextField()
     editor = models.ForeignKey(Editor, on_delete=models.CASCADE)
     tags = models.ManyToManyField(tags)#many to many relationships
-    pub_date = models.DateField(auto_now_add=True)#adds timestamp
+    pub_date = models.DateField(null=True)#adds timestamp
+    article_image = models.ImageField(upload_to = 'articles/' , blank=True)
 
     @classmethod
     def todays_news(cls):
@@ -44,4 +46,8 @@ class Article(models.Model):
     @classmethod
     def days_news(cls,date):
         news = cls.objects.filter(pub_date__date = date)
+        return news
+    @classmethod
+    def search_by_title(cls,search_term):
+        news = cls.oblects.filter(title__icontains=search_term)
         return news
