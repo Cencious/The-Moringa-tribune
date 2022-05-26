@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'tribune.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 MODE=config("MODE", default="dev")
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('django-insecure-1jjxq$18fm!f7)(*8-xyvew4dw1y6)w)j7#^((6vsei!_*t02h')
 
 # development
 if config('MODE')=="dev":
