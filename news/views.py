@@ -3,8 +3,6 @@ from django.http import Http404,HttpResponse #responsible for returning a respon
 import datetime as dt
 from .models import Article
 
-
-
 # Create your views here.
 def welcome(request): 
     # return HttpResponse('Welcome to the Moringa Tribune')
