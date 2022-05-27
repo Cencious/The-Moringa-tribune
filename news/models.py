@@ -35,19 +35,19 @@ class Article(models.Model):
     post = models.TextField()
     editor = models.ForeignKey(Editor, on_delete=models.CASCADE)
     tags = models.ManyToManyField(tags)#many to many relationships
-    pub_date = models.DateField(null=True)#adds timestamp
+    pub_date = models.DateTimeField(null=True)#adds timestamp
     article_image = models.ImageField(upload_to = 'articles/' , blank=True)
 
     @classmethod
     def todays_news(cls):
-            today = dt.date.today()
-            news = cls.objects.filter(pub_date__date = today)
-            return news
+        today = dt.date.today()
+        news = cls.objects.filter(pub_date__date = today)
+        return news
     @classmethod
     def days_news(cls,date):
         news = cls.objects.filter(pub_date__date = date)
         return news
     @classmethod
     def search_by_title(cls,search_term):
-        news = cls.oblects.filter(title__icontains=search_term)
+        news = cls.objects.filter(title__icontains=search_term)
         return news
