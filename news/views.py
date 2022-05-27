@@ -4,18 +4,18 @@ import datetime as dt
 from .models import Article
 
 # Create your views here.
-def welcome(request): 
-    # return HttpResponse('Welcome to the Moringa Tribune')
-    return render(request, 'welcome.html')
+# def welcome(request): 
+#     # return HttpResponse('Welcome to the Moringa Tribune')
+#     return render(request, 'welcome.html')
 
-def convert_dates(dates):
-    #function that gets the weekday number for the date.
-    day_number = dt.date.weekday(dates)
+# def convert_dates(dates):
+#     #function that gets the weekday number for the date.
+#     day_number = dt.date.weekday(dates)
 
-    days =['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-    #Returning the actual days of the week
-    day = days[day_number]
-    return day
+#     days =['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+#     #Returning the actual days of the week
+#     day = days[day_number]
+#     return day
 
 def news_of_day(request):
     date = dt.date.today()
@@ -52,7 +52,7 @@ def search_results(request):
 def article(request,article_id):
     try:
         article = Article.objects.get(id = article_id)
-    except DoesNotExist:
+    except:
         raise Http404()
     return render(request,'all-news/article.html',{'article':article})
         
