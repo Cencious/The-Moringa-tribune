@@ -1,1 +1,1 @@
-web: gunicorn tribune.wsgi 
+web: gunicorn tribune.wsgi --log-file -

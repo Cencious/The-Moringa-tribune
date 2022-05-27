@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-1jjxq$18fm!f7)(*8-xyvew4dw1y6)w)j7#^((6vsei!_*t02h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'herokuapp.com']
 
 
 # Application definition
@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'tribune.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 MODE=config("MODE", default="dev")
-SECRET_KEY = config('django-insecure-1jjxq$18fm!f7)(*8-xyvew4dw1y6)w)j7#^((6vsei!_*t02h')
+SECRET_KEY = config('SECRET_KEY')
 
 # development
 if config('MODE')=="dev":
@@ -112,7 +112,7 @@ else:
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+# ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Password validation
