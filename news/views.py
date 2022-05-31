@@ -1,8 +1,8 @@
 from hashlib import new
 from django.shortcuts import redirect, render
-from django.http import Http404,HttpResponse #responsible for returning a response to a user. 
+from django.http import Http404,HttpResponse,Http404, HttpResponseRedirect #responsible for returning a response to a user. 
 import datetime as dt
-from .models import Article
+from .models import Article, NewsLetterReciepients
 from .forms import NewsLetterForm
 
 # Create your views here.
@@ -66,7 +66,19 @@ def news_today(request):
     else:
         form =NewsLetterForm()
     return render(request, 'all-news/today-news.html', {"date": date,"news":news,"letterForm":form})
-    
+
+def news_today(request):
+    if request.method =='POST':
+        form = NewsLetterForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['your_name']
+            email = form.cleaned_data['email']
+            recepient =NewsLetterReciepients(name = name, email= email)
+            HttpResponseRedirect('news_today')
+        else:
+            form =NewsLetterForm()
+        return render(request, 'all-news/today-news.html', {"date": date,"news":news, "letterForm": form})
+        
 
 
 
